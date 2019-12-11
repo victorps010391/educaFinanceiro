@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <ui:composition template="/template/layoutBase.xhtml">
+        <ui:define name="content">
+            <h:form id="frmCadMovimentacao" acceptcharset="ISO-8859-1" enctype="multipart/form-data">
+                <p:growl id="growl" showDetail="true"/>                                  
+                <p:panel header="Movimentação" >
+                    <h:panelGrid columns="2" >
+                        <h:outputLabel value="Código: "/>
+                        <p:inputText value="#{cadMovimentacaoBean.codMov}">
+                            <f:convertNumber type="number"/>
+                        </p:inputText>
+
+                        <h:outputLabel value="Descrição: "/>
+                        <p:inputText value="#{cadMovimentacaoBean.descMov}"/>
+
+                        <h:outputLabel value="Situação:"/>
+                        <p:selectOneMenu id="sitDrop" value="#{cadMovimentacaoBean.sitMov}">                    
+                            <f:selectItem itemLabel="........................................" />  
+                            <f:selectItems value="#{cadMovimentacaoBean.carregaSitMov()}" var="sit"  
+                                           itemLabel="#{sit.get('nome')}" itemValue="#{sit.get('codigo')}" />
+                        </p:selectOneMenu>
+
+                    </h:panelGrid>
+                    <f:facet name="footer">                    
+                        <p:commandButton value="Pesquisar" update="gridPrincipal" ajax="false"/>                    
+                        <p:commandButton value="Limpar" ajax="false"/>                    
+                        <p:commandButton value="Nova Movimentação" />  
+                        <p:commandButton value="Voltar" style="float: right" />
+                    </f:facet>
+                </p:panel>
+
+                <p:dataTable id="gridPrincipal" value="" var="item" rows="8" 
+                             paginator="true" paginatorAlwaysVisible="false"  
+                             paginatorPosition="bottom"
+                             emptyMessage="Nenhum Registro Encontrado">
+                    <f:facet name="header">
+                        Movimentações Cadastradas
+                    </f:facet>
+                    <p:column style="text-align: center; width: 5%" >
+                        <f:facet name="header">
+                            <h:outputText value="Código"/>
+                        </f:facet>
+                        <h:outputText value=""/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nome"/>
+                        </f:facet>
+                        <h:outputText value=""/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Situação"/>
+                        </f:facet>
+                        <h:outputText value=""/>
+                    </p:column>
+
+                    <p:column style="text-align: center; width: 5%">
+                        <f:facet name="header">
+                            <h:outputText value="Ações"/>
+                        </f:facet>              
+                        <p:commandButton id="acoes" icon="ui-icon-triangle-2-n-s"/>
+                        <p:tieredMenu overlay="true" trigger="acoes" my="left top" at="left bottom">                        
+                            <p:menuitem value="Alterar" />                         
+                        </p:tieredMenu>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
