@@ -39,6 +39,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "CadMovimentacao.findByMovUsuUltAtu", query = "SELECT c FROM CadMovimentacao c WHERE c.movUsuUltAtu = :movUsuUltAtu")})
 public class CadMovimentacao implements Serializable {
 
+    @Size(max = 2)
+    @Column(name = "mov_tip")
+    private String movTip;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -148,6 +152,14 @@ public class CadMovimentacao implements Serializable {
     @Override
     public String toString() {
         return "com.softbean.educafinanceiro.entidade.CadMovimentacao[ movId=" + movId + " ]";
+    }
+
+    public String getMovTip() {
+        return movTip;
+    }
+
+    public void setMovTip(String movTip) {
+        this.movTip = movTip;
     }
     
 }

@@ -6,32 +6,26 @@
 
     <h:form>        
         <p:menubar class="aw-menu">
-            <p:menuitem value="Home" icon="ui-icon-home" styleClass="menu-estilo-home"/>            
+            <p:menuitem value="Home" icon="ui-icon-home" styleClass="menu-estilo-home" url="#{menuManager.menuHome()}"/>            
             <p:submenu label="Cadastro Básico" styleClass="menu-estilo">                
                 <p:submenu label="Movimentações">
-                    <p:menuitem value="Gerenciamento" url="/educaFinanceiro/sistema/cadMovimentacao.xhtml" />
-                    <p:submenu label="Relatórios">
-                        <p:menuitem value="Receita" url="#" />
-                        <p:menuitem value="Despesas" url="#" />
-                    </p:submenu>
+                    <p:menuitem value="Gerenciamento" url="#{menuManager.menuCadMovimentacao()}" />
                 </p:submenu>
-                <p:submenu label="Alunos">
-                    <p:menuitem value="Gerenciamento" url="#" />
-                    <p:submenu label="Relatórios">
-                        <p:menuitem value="Receita" url="#" />
-                        <p:menuitem value="Despesas" url="#" />
-                    </p:submenu>
-                </p:submenu>               
                 <p:submenu label="Funcionários">
-                    <p:menuitem value="Gerenciamento" url="#" />
-                    <p:submenu label="Relatórios">
-                        <p:menuitem value="Receita" url="#" />
-                        <p:menuitem value="Despesas" url="#" />
-                    </p:submenu>
+                    <p:submenu label="Gerenciamento">
+                        <p:menuitem value="Cadastrar função" url="#" />  
+                        <p:menuitem value="Cadastrar funcionário" url="#" />     
+                    </p:submenu>    
                 </p:submenu>  
+                <p:submenu label="Alunos">
+                    <p:submenu label="Gerenciamento">
+                        <p:menuitem value="Cadastrar turma" url="#" />  
+                        <p:menuitem value="Cadastrar aluno" url="#" />  
+                    </p:submenu>
+                </p:submenu>                               
             </p:submenu>
 
-            <p:submenu label="Administraçao Financeira" styleClass="menu-estilo">                
+            <p:submenu label="Financeiro" styleClass="menu-estilo">                
                 <p:submenu label="Movimentações">
                     <p:menuitem value="Gerenciamento" url="#" />
                     <p:submenu label="Relatórios">
@@ -39,20 +33,6 @@
                         <p:menuitem value="Despesas" url="#" />
                     </p:submenu>
                 </p:submenu>
-                <p:submenu label="Alunos">
-                    <p:menuitem value="Gerenciamento" url="#" />
-                    <p:submenu label="Relatórios">
-                        <p:menuitem value="Receita" url="#" />
-                        <p:menuitem value="Despesas" url="#" />
-                    </p:submenu>
-                </p:submenu>               
-                <p:submenu label="Funcionários">
-                    <p:menuitem value="Gerenciamento" url="#" />
-                    <p:submenu label="Relatórios">
-                        <p:menuitem value="Receita" url="#" />
-                        <p:menuitem value="Despesas" url="#" />
-                    </p:submenu>
-                </p:submenu>               
             </p:submenu>
 
             <f:facet name="options">            

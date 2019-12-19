@@ -1,6 +1,8 @@
 com\softbean\educafinanceiro\entidade\CadMovimentacao.class
+com\softbean\educafinanceiro\manager\HomeManager.class
+com\softbean\educafinanceiro\fachada\CadMovimentacaoFacade.class
 com\softbean\educafinanceiro\controle\CadMovimentacaoControle.class
 com\softbean\educafinanceiro\bean\CadMovimentacaoBean.class
 com\softbean\educafinanceiro\fachada\AbstractFacade.class
 com\softbean\educafinanceiro\entidade\CadMovimentacao_.class
-com\softbean\educafinanceiro\fachada\CadMovimentacaoFacade.class
+com\softbean\educafinanceiro\manager\MenuManager.class
