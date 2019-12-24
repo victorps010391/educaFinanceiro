@@ -27,6 +27,10 @@ public class MenuManager implements Serializable {
         return "/educaFinanceiro/sistema/cadMovimentacao.xhtml";
     }
 
+    public String menuCadFuncao() {
+        return "/educaFinanceiro/sistema/cadFuncao.xhtml";
+    }
+
     public String menuHome() {
         return "/educaFinanceiro/sistema/home.xhtml";
     }

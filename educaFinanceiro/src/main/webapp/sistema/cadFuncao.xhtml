@@ -21,7 +21,7 @@
 
                         <h:outputLabel value="Descrição: "/>
                         <p:inputText value="#{cadMovimentacaoBean.descMov}"/>
-                        
+
                         <h:outputLabel value="Situação:"/>
                         <p:selectOneMenu id="sitDrop" value="#{cadMovimentacaoBean.sitMov}">                    
                             <f:selectItem itemLabel="........................................" />  
@@ -33,7 +33,7 @@
                     <f:facet name="footer">                    
                         <p:commandButton value="Pesquisar" ajax="false" update="gridPrincipal" actionListener="#{cadMovimentacaoBean.pesquisarMovimento()}"/>                    
                         <p:commandButton value="Limpar" actionListener="#{cadMovimentacaoBean.limparPesquisa()}" update=":frmCadFuncao"/>                    
-                        <p:commandButton value="Nova Função" onclick="PF('dlCadFuncao').show()" update=":frmDlCadfuncao"/>  
+                        <p:commandButton value="Nova Função" onclick="PF('dlCadFuncao').show()" update=":frmDlCadFuncao"/>  
                         <p:commandButton value="Voltar" style="float: right" action="#{homeManager.voltar()}"/>
                     </f:facet>
                 </p:panel>
@@ -43,7 +43,7 @@
                              paginatorPosition="bottom"
                              emptyMessage="Nenhum Registro Encontrado">
                     <f:facet name="header">
-                        Movimentações Cadastradas
+                        Funções Cadastradas
                     </f:facet>
                     <p:column style="text-align: center; width: 5%" >
                         <f:facet name="header">
@@ -58,7 +58,7 @@
                         </f:facet>
                         <h:outputText value="#{item.get('descricao')}"/>
                     </p:column>
-                   
+
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="Situação"/>
@@ -79,23 +79,22 @@
                 </p:dataTable>
             </h:form>
 
-            <p:dialog widgetVar="dlCadMov" header="Cadastrar funç
-                      ão" modal="true" appendTo="@(body)">
-                <h:form id="frmDlCadMov" acceptcharset="ISO-8859-1" enctype="multipart/form-data">
+            <p:dialog widgetVar="dlCadFuncao" header="Cadastrar função" modal="true" appendTo="@(body)">
+                <h:form id="frmDlCadFuncao" acceptcharset="ISO-8859-1" enctype="multipart/form-data">
                     <p:panel>
                         <h:panelGrid columns="2" >
                             <h:outputLabel value="Descrição: "/>
-                            <p:inputText value="#{cadMovimentacaoBean.cadDescMov}" />                           
+                            <p:inputText value="#{cadFuncaoBean.cadDescFuncao}" />                           
 
                             <p:outputLabel for="sit" value="Situação: " />
-                            <p:selectOneRadio id="sit" value="#{cadMovimentacaoBean.cadSitMov}" >
+                            <p:selectOneRadio id="sit" value="#{cadFuncaoBean.cadSitFuncao}" >
                                 <f:selectItem itemLabel="Ativo" itemValue="01"  />
                                 <f:selectItem itemLabel="Inativo" itemValue="02" />                                
                             </p:selectOneRadio>
                         </h:panelGrid>
                         <f:facet name="footer">
-                            <p:commandButton value="Salvar" actionListener="#{cadMovimentacaoBean.salvarMovimento()}" update="@form :frmCadFuncao" />
-                            <p:commandButton type="button" value="Cancelar" onclick="PF('dlCadMov').hide()" update="@form :frmCadFuncao" />
+                            <p:commandButton value="Salvar" actionListener="#{cadFuncaoBean.salvarFuncao()}" update="@form :frmCadFuncao" />
+                            <p:commandButton type="button" value="Cancelar" onclick="PF('dlCadFuncao').hide()" update="@form :frmCadFuncao" />
                         </f:facet>
                     </p:panel>
                 </h:form>
@@ -110,7 +109,7 @@
 
                             <h:outputLabel value="Descrição: "/>
                             <p:inputText value="#{cadMovimentacaoBean.altObj.movDesc}" />
-                           
+
                             <p:outputLabel for="sit" value="Situação: " />
                             <p:selectOneRadio id="sit" value="#{cadMovimentacaoBean.altObj.movSit}" >
                                 <f:selectItem itemLabel="Ativo" itemValue="01"  />
