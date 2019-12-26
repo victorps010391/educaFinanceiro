@@ -68,7 +68,7 @@ public class CadMovimentacaoBean implements Serializable {
             getAltObj().setMovDtUltAtu(new Date());
             getAltObj().setMovUsuUltAtu(999);
             if (movimentacaoControle.alterarMovimento(getAltObj())) {
-                mensagem.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "educaFinanceiro Informa:", "Movimento Alterado  com Sucesso."));
+                mensagem.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "educaFinanceiro Informa:", "Movimento Alterado com Sucesso."));
                 setGridPesquisa(movimentacaoControle.listarPesquisa(getAltObj().getMovId(), getAltObj().getMovDesc(), getAltObj().getMovTip(), getAltObj().getMovSit()));
                 sessao.executeScript("PF('dlAltMov').hide()");
             } else {

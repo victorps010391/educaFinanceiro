@@ -6,6 +6,7 @@
 package com.softbean.educafinanceiro.bean;
 
 import com.softbean.educafinanceiro.controle.CadFuncaoControle;
+import com.softbean.educafinanceiro.controle.CadMovimentacaoControle;
 import com.softbean.educafinanceiro.entidade.CadFuncao;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -34,12 +35,23 @@ public class CadFuncaoBean implements Serializable {
 
     @Inject
     CadFuncaoControle funcaoControle;
+    @Inject
+    CadMovimentacaoControle movimentacaoControle;
 
     CadFuncao cadObj, altObj;
 
     List<Map<String, Object>> listarSitFuncao, gridPesquisa;
     Integer pesqCodFuncao;
     String pesqDescFuncao, pesqSitFuncao, cadDescFuncao, cadSitFuncao;
+
+    public void pesquisarFuncao() {
+        try {
+            setGridPesquisa(funcaoControle.listarPesquisa(getPesqCodFuncao(), getPesqDescFuncao(), getPesqSitFuncao()));
+        } catch (Exception e) {
+            System.out.println("ERRO no método pesquisarFuncao " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
     public void salvarFuncao() {
         FacesContext mensagem = FacesContext.getCurrentInstance();
@@ -56,7 +68,7 @@ public class CadFuncaoBean implements Serializable {
             if (funcaoControle.salvarFuncao(getCadObj())) {
                 mensagem.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "educaFinanceiro Informa:", "Cadastro de Função Realizado com Sucesso."));
                 sessao.executeScript("PF('dlCadFuncao').hide()");
-                //setGridPesquisa(movimentacaoControle.listarPesquisa(getCadObj().getFuncaoId(), getCadObj().getFuncaoDesc(), getCadObj().getFuncaoSit()));
+                setGridPesquisa(funcaoControle.listarPesquisa(getCadObj().getFuncaoId(), getCadObj().getFuncaoDesc(), getCadObj().getFuncaoSit()));
             } else {
                 mensagem.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "educaFinanceiro Informa:", "Erro ao Cadastrar Função."));
             }
@@ -65,6 +77,54 @@ public class CadFuncaoBean implements Serializable {
             e.printStackTrace();
             mensagem.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "educaFinanceiro Informa:", "Erro ao Cadastrar Função."));
         }
+    }
+
+    public void buscarFuncao(Integer cod) {
+        try {
+            setAltObj(funcaoControle.buscarFuncao(cod));
+        } catch (Exception e) {
+            System.out.println("ERRO no método buscarFuncao " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public void alterarFuncao() {
+        FacesContext mensagem = FacesContext.getCurrentInstance();
+        PrimeFaces sessao = PrimeFaces.current();
+        try {
+            getAltObj().setFuncaoDtRegi(new Date());
+            getAltObj().setFuncaoUsuRegi(999);
+            getAltObj().setFuncaoDtUltAtu(new Date());
+            getAltObj().setFuncaoUsuUltAtu(999);
+            if (funcaoControle.alterarFuncao(getAltObj())) {
+                mensagem.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "educaFinanceiro Informa:", "Função Alterada com Sucesso."));
+                setGridPesquisa(funcaoControle.listarPesquisa(getAltObj().getFuncaoId(), getAltObj().getFuncaoDesc(), getAltObj().getFuncaoSit()));
+                sessao.executeScript("PF('dlAltFuncao').hide()");
+            } else {
+                mensagem.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "educaFinanceiro Informa:", "Erro ao Alterar Função."));
+            }
+        } catch (Exception e) {
+            System.out.println("ERRO no metódo alterarFuncao " + e.getMessage());
+            e.printStackTrace();
+            mensagem.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "educaFinanceiro Informa:", "Erro ao Alterar Função."));
+        }
+    }
+
+    public List<Map<String, Object>> carregaSitFuncao() {
+        try {
+            setListarSitFuncao(movimentacaoControle.ListaSitMovimentacao());
+        } catch (Exception e) {
+            System.out.println("Erro no método carregaSitFuncao " + e.getMessage());
+            e.printStackTrace();
+        }
+        return getListarSitFuncao();
+    }
+
+    public void limparPesquisa() {
+        setPesqCodFuncao(null);
+        setPesqSitFuncao(null);
+        setPesqDescFuncao(null);
+        setGridPesquisa(null);
     }
 
     public CadFuncao getCadObj() {

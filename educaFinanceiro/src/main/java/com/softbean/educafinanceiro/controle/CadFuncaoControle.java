@@ -10,6 +10,8 @@ import com.softbean.educafinanceiro.fachada.CadFuncaoFacade;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 import javax.inject.Inject;
 
 /**
@@ -35,6 +37,31 @@ public class CadFuncaoControle implements Serializable {
             return true;
         } catch (Exception e) {
             System.out.println("salvarFuncao (controle) " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public List<Map<String, Object>> listarPesquisa(Integer cod, String desc, String sit) {
+        return funcaoFacade.listarPesquisa(cod, desc, sit);
+    }
+
+    public CadFuncao buscarFuncao(Integer cod) {
+        try {
+            return funcaoFacade.find(cod);
+        } catch (Exception e) {
+            System.out.println("buscarFuncao (controle) " + e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public Boolean alterarFuncao(CadFuncao obj) {
+        try {
+            funcaoFacade.edit(obj);
+            return true;
+        } catch (Exception e) {
+            System.out.println("alterarFuncao (controle) " + e.getMessage());
             e.printStackTrace();
             return false;
         }

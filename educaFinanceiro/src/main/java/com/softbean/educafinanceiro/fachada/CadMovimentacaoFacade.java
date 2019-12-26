@@ -106,7 +106,7 @@ public class CadMovimentacaoFacade extends AbstractFacade<CadMovimentacao> {
             sql.append(" and mov_tip = ").append(tip);
         }
         if (sit != null) {
-            sql.append(" and mov_sit = ").append(sit);
+            sql.append(" and mov_sit = '").append(sit).append("'");
         }
 
         try {

@@ -15,30 +15,31 @@
                 <p:panel header="Função" >
                     <h:panelGrid columns="2" >
                         <h:outputLabel value="Código: "/>
-                        <p:inputText value="#{cadMovimentacaoBean.codMov}">
+                        <p:inputText value="#{cadFuncaoBean.pesqCodFuncao}">
                             <f:convertNumber type="number"/>
                         </p:inputText>
 
                         <h:outputLabel value="Descrição: "/>
-                        <p:inputText value="#{cadMovimentacaoBean.descMov}"/>
+                        <p:inputText value="#{cadFuncaoBean.cadDescFuncao}"/>
 
                         <h:outputLabel value="Situação:"/>
-                        <p:selectOneMenu id="sitDrop" value="#{cadMovimentacaoBean.sitMov}">                    
-                            <f:selectItem itemLabel="........................................" />  
-                            <f:selectItems value="#{cadMovimentacaoBean.carregaSitMov()}" var="sit"  
-                                           itemLabel="#{sit.get('nome')}" itemValue="#{sit.get('codigo')}" />
+                        <p:selectOneMenu id="sitDrop" value="#{cadFuncaoBean.pesqSitFuncao}">                    
+                            <f:selectItem itemLabel="........................................" />                            
+                            <f:selectItems value="#{cadFuncaoBean.carregaSitFuncao()}" var="sit"  
+                                           itemLabel="#{sit.get('nome')}" itemValue="#{sit.get('codigo')}" />                           
                         </p:selectOneMenu>
+
 
                     </h:panelGrid>
                     <f:facet name="footer">                    
-                        <p:commandButton value="Pesquisar" ajax="false" update="gridPrincipal" actionListener="#{cadMovimentacaoBean.pesquisarMovimento()}"/>                    
-                        <p:commandButton value="Limpar" actionListener="#{cadMovimentacaoBean.limparPesquisa()}" update=":frmCadFuncao"/>                    
-                        <p:commandButton value="Nova Função" onclick="PF('dlCadFuncao').show()" update=":frmDlCadFuncao"/>  
+                        <p:commandButton value="Pesquisar" ajax="false" update="gridPrincipal" actionListener="#{cadFuncaoBean.pesquisarFuncao()}"/>                    
+                        <p:commandButton value="Limpar" update=":frmCadFuncao" actionListener="#{cadFuncaoBean.limparPesquisa()}"/>                    
+                        <p:commandButton value="Nova Função" update=":frmDlCadFuncao" onclick="PF('dlCadFuncao').show()"/>  
                         <p:commandButton value="Voltar" style="float: right" action="#{homeManager.voltar()}"/>
                     </f:facet>
                 </p:panel>
 
-                <p:dataTable id="gridPrincipal" value="#{cadMovimentacaoBean.gridPesquisa}" var="item" rows="8" 
+                <p:dataTable id="gridPrincipal" value="#{cadFuncaoBean.gridPesquisa}" var="item" rows="8" 
                              paginator="true" paginatorAlwaysVisible="false"  
                              paginatorPosition="bottom"
                              emptyMessage="Nenhum Registro Encontrado">
@@ -72,8 +73,8 @@
                         </f:facet>              
                         <p:commandButton id="acoes" icon="ui-icon-triangle-2-n-s"/>
                         <p:tieredMenu overlay="true" trigger="acoes" my="left top" at="left bottom">                        
-                            <p:menuitem value="Alterar" actionListener="#{cadMovimentacaoBean.buscarMovimento(item.get('codigo'))}"
-                                        onclick="PF('dlAltMov').show()" update=":frmDlAltMov"/>                         
+                            <p:menuitem value="Alterar" actionListener="#{cadFuncaoBean.buscarFuncao(item.get('codigo'))}"
+                                        onclick="PF('dlAltFuncao').show()" update=":frmDlAltFuncao"/>                         
                         </p:tieredMenu>
                     </p:column>
                 </p:dataTable>
@@ -100,25 +101,25 @@
                 </h:form>
             </p:dialog>
 
-            <p:dialog widgetVar="dlAltMov" header="Alterar função" modal="true" appendTo="@(body)">
-                <h:form id="frmDlAltMov" acceptcharset="ISO-8859-1" enctype="multipart/form-data">
+            <p:dialog widgetVar="dlAltFuncao" header="Alterar função" modal="true" appendTo="@(body)">
+                <h:form id="frmDlAltFuncao" acceptcharset="ISO-8859-1" enctype="multipart/form-data">
                     <p:panel>
                         <h:panelGrid columns="2" >
                             <h:outputLabel value="Código: "/>
-                            <h:outputLabel value="#{cadMovimentacaoBean.altObj.movId}"/>
+                            <h:outputLabel value="#{cadFuncaoBean.altObj.funcaoId}"/>
 
                             <h:outputLabel value="Descrição: "/>
-                            <p:inputText value="#{cadMovimentacaoBean.altObj.movDesc}" />
+                            <p:inputText value="#{cadFuncaoBean.altObj.funcaoDesc}" />
 
                             <p:outputLabel for="sit" value="Situação: " />
-                            <p:selectOneRadio id="sit" value="#{cadMovimentacaoBean.altObj.movSit}" >
+                            <p:selectOneRadio id="sit" value="#{cadFuncaoBean.altObj.funcaoSit}" >
                                 <f:selectItem itemLabel="Ativo" itemValue="01"  />
                                 <f:selectItem itemLabel="Inativo" itemValue="02" />                                
                             </p:selectOneRadio>
                         </h:panelGrid>
                         <f:facet name="footer">
-                            <p:commandButton value="Alterar" actionListener="#{cadMovimentacaoBean.alterarMovimento()}" update="@form :frmCadFuncao" />
-                            <p:commandButton type="button" value="Cancelar" onclick="PF('dlAltMov').hide()" update="@form :frmCadFuncao" />
+                            <p:commandButton value="Alterar" actionListener="#{cadFuncaoBean.alterarFuncao()}" update="@form :frmCadFuncao" />
+                            <p:commandButton type="button" value="Cancelar" onclick="PF('dlAltFuncao').hide()" update="@form :frmCadFuncao" />
                         </f:facet>
                     </p:panel>
                 </h:form>
