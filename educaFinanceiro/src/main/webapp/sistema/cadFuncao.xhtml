@@ -20,10 +20,10 @@
                         </p:inputText>
 
                         <h:outputLabel value="Descrição: "/>
-                        <p:inputText value="#{cadFuncaoBean.cadDescFuncao}"/>
+                        <p:inputText value="#{cadFuncaoBean.pesqDescFuncao}"/>
 
                         <h:outputLabel value="Situação:"/>
-                        <p:selectOneMenu id="sitDrop" value="#{cadFuncaoBean.pesqSitFuncao}">                    
+                        <p:selectOneMenu id="sitDrop" value="#{cadFuncaoBean.pesqSitFuncao}" filter="true" filterMatchMode="contains">                    
                             <f:selectItem itemLabel="........................................" />                            
                             <f:selectItems value="#{cadFuncaoBean.carregaSitFuncao()}" var="sit"  
                                            itemLabel="#{sit.get('nome')}" itemValue="#{sit.get('codigo')}" />                           

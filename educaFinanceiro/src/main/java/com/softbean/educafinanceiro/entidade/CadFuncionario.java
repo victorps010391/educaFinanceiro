@@ -40,6 +40,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "CadFuncionario.findByUsuUltAtuFunc", query = "SELECT c FROM CadFuncionario c WHERE c.usuUltAtuFunc = :usuUltAtuFunc")})
 public class CadFuncionario implements Serializable {
 
+    @Column(name = "funcao_func")
+    private Integer funcaoFunc;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -50,9 +53,6 @@ public class CadFuncionario implements Serializable {
     @Size(max = 512)
     @Column(name = "nome_func")
     private String nomeFunc;
-    @Size(max = 2)
-    @Column(name = "funcao_func")
-    private String funcaoFunc;
     @Column(name = "salario_brut_func")
     private BigInteger salarioBrutFunc;
     @Column(name = "dt_reg_func")
@@ -88,15 +88,7 @@ public class CadFuncionario implements Serializable {
     public void setNomeFunc(String nomeFunc) {
         this.nomeFunc = nomeFunc;
     }
-
-    public String getFuncaoFunc() {
-        return funcaoFunc;
-    }
-
-    public void setFuncaoFunc(String funcaoFunc) {
-        this.funcaoFunc = funcaoFunc;
-    }
-
+  
     public BigInteger getSalarioBrutFunc() {
         return salarioBrutFunc;
     }
@@ -160,6 +152,14 @@ public class CadFuncionario implements Serializable {
     @Override
     public String toString() {
         return "com.softbean.educafinanceiro.entidade.CadFuncionario[ cpfFunc=" + cpfFunc + " ]";
+    }
+
+    public Integer getFuncaoFunc() {
+        return funcaoFunc;
+    }
+
+    public void setFuncaoFunc(Integer funcaoFunc) {
+        this.funcaoFunc = funcaoFunc;
     }
     
 }

@@ -23,14 +23,14 @@
                         <p:inputText value="#{cadMovimentacaoBean.descMov}"/>
 
                         <h:outputLabel value="Tipo:"/>
-                        <p:selectOneMenu id="tipDrop" value="#{cadMovimentacaoBean.tipMov}">                    
+                        <p:selectOneMenu id="tipDrop" value="#{cadMovimentacaoBean.tipMov}" filter="true" filterMatchMode="contains">                    
                             <f:selectItem itemLabel="........................................" />  
                             <f:selectItems value="#{cadMovimentacaoBean.carregaTipMov()}" var="tip"  
                                            itemLabel="#{tip.get('nome')}" itemValue="#{tip.get('codigo')}" />
                         </p:selectOneMenu>
 
                         <h:outputLabel value="Situação:"/>
-                        <p:selectOneMenu id="sitDrop" value="#{cadMovimentacaoBean.sitMov}">                    
+                        <p:selectOneMenu id="sitDrop" value="#{cadMovimentacaoBean.sitMov}" filter="true" filterMatchMode="contains">                    
                             <f:selectItem itemLabel="........................................" />  
                             <f:selectItems value="#{cadMovimentacaoBean.carregaSitMov()}" var="sit"  
                                            itemLabel="#{sit.get('nome')}" itemValue="#{sit.get('codigo')}" />
@@ -101,7 +101,7 @@
                             <p:inputText value="#{cadMovimentacaoBean.cadDescMov}" />
 
                             <h:outputLabel value="Tipo:"/>
-                            <p:selectOneMenu id="tipDrop" value="#{cadMovimentacaoBean.cadTipMov}">                    
+                            <p:selectOneMenu id="tipDrop" value="#{cadMovimentacaoBean.cadTipMov}" filter="true" filterMatchMode="contains">                    
                                 <f:selectItem itemLabel="........................................" />  
                                 <f:selectItems value="#{cadMovimentacaoBean.carregaTipMov()}" var="tip"  
                                                itemLabel="#{tip.get('nome')}" itemValue="#{tip.get('codigo')}" />
@@ -132,7 +132,7 @@
                             <p:inputText value="#{cadMovimentacaoBean.altObj.movDesc}" />
 
                             <h:outputLabel value="Tipo:"/>
-                            <p:selectOneMenu id="tipDrop" value="#{cadMovimentacaoBean.altObj.movTip}">                    
+                            <p:selectOneMenu id="tipDrop" value="#{cadMovimentacaoBean.altObj.movTip}" filter="true" filterMatchMode="contains">                    
                                 <f:selectItem itemLabel="........................................" />  
                                 <f:selectItems value="#{cadMovimentacaoBean.carregaTipMov()}" var="tip"  
                                                itemLabel="#{tip.get('nome')}" itemValue="#{tip.get('codigo')}" />
